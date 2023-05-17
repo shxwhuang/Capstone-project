@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'restaurant',
     'rest_framework',
+    'rest_framework.authtoken',   
+    'djoser', 
 ]
 
 MIDDLEWARE = [
@@ -70,6 +72,27 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'LittleLemon.wsgi.application'
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDER_CLASSES' :[
+        'rest_framework.renders.JSONRenderer',
+        'rest_framework.renders.BrowsableAPIRenderer',
+        'rest_framework_xml.renders.XMLRenderer',
+    ],
+
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated'
+   ),
+}
+
+#add the following line
+DJOSER={"USER_ID_FIELD":"username"}
 
 
 # Database
